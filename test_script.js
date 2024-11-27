@@ -10,8 +10,10 @@ export default function () {
     const routingKey = 'test-routing-key';// Routing key usada
     const message = `Mensagem do K6: ${__VU} - ${__ITER}`; // Mensagem com VU e Iteração
 
+    console.log("AMQP: ", amqp);
+
     // Publicar a mensagem no exchange
-    amqp.PublishToExchange(host, vhost, username, password, exchange, routingKey, message);
+    //amqp.PublishToExchange(host, vhost, username, password, exchange, routingKey, message);
 
     console.log(`Mensagem enviada: ${message}`);
 }

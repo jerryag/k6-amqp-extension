@@ -9,7 +9,9 @@ import (
 )
 
 // Estrutura principal da extensão AMQP
-type AMQP struct{}
+type AMQP struct{
+	version  string
+}
 
 func init() {
 	// Registrar o módulo personalizado no k6
