@@ -15,8 +15,8 @@ type AMQP struct{
 
 func init() {
 	// Registrar o módulo personalizado no k6
-	oAmqp := AMQP{}
-	modules.Register("k6/x/amqp", &oAmqp)
+	//oAmqp := AMQP{}
+	modules.Register("k6/x/amqp", new(AMQP))
 }
 
 // PublishToExchange publica uma mensagem em um exchange específico do RabbitMQ usando autenticação
