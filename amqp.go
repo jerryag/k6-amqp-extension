@@ -8,19 +8,14 @@ import (
 	"go.k6.io/k6/js/modules"
 )
 
-const version = "v0.0.1"
-
 // Estrutura principal da extensão AMQP
 type AMQP struct{
 	version  string
 }
 
 func init() {
-	oAmqp := AMQP{
-		Version:     version,
-	}
-
 	// Registrar o módulo personalizado no k6
+	oAmqp := AMQP{}
 	modules.Register("k6/x/amqp", &oAmqp)
 }
 
