@@ -11,10 +11,11 @@ export default function () {
     const message = `Mensagem do K6: ${__VU} - ${__ITER}`; // Mensagem com VU e Iteração
 
     console.log("AMQP: ", amqp);
+    console.log("Version: ", amqp.version);
     console.log('Tipo de "amqp":', typeof amqp);
 
     // Publicar a mensagem no exchange
-    //amqp.PublishToExchange(host, vhost, username, password, exchange, routingKey, message);
+    amqp.publishToExchange(host, vhost, username, password, exchange, routingKey, message);
 
     console.log(`Mensagem enviada: ${message}`);
 }
