@@ -42,7 +42,7 @@ func (a *AMQP) PublishToExchange(host, vhost, username, password, exchange, rout
 
 	// Publicar a mensagem no exchange com a routing key especificada
 	err = ch.Publish(
-		exchange,  // Nome do exchange
+		exchange,   // Nome do exchange
 		routingKey, // Routing key
 		false,      // Mandatory (setando para false, se não houver um binding para a rk, a mensagem será descartada silenciosamente)
 		false,      // Immediate (false, significa que a mensagem será enfileirada mesmo se não houver algum consumidor ativo para a(s) fila(s) bindadas)
