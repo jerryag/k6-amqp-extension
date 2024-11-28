@@ -12,12 +12,12 @@ type (
 	AMQP struct{}
 )
 
+// x
 func init() {
 	modules.Register("k6/x/amqp", new(AMQP))
 }
 
 // Conectar ao RabbitMQ e obter utilizando as informações e credenciais recebidas
-// x
 func (a *AMQP) Connect(host, vhost, username, password string) (*amqp.Connection, error) {
 	// Montar a URL de conexão AMQP com usuário e senha
 	amqpURL := fmt.Sprintf("amqp://%s:%s@%s/%s", username, password, host, vhost)
