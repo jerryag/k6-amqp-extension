@@ -12,7 +12,7 @@ const version = "0.0.1"
 
 // Estrutura principal da extensão AMQP
 type AMQP struct {
-	Version string,
+	Version string
 }
 
 func init() {
