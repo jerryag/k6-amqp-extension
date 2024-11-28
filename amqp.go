@@ -11,11 +11,16 @@ import (
 const version = "0.0.1"
 
 // Estrutura principal da extensão AMQP
-type AMQP struct {}
+type AMQP struct {
+	Version string
+}
 
 func init() {
 	// Registrar o módulo personalizado no k6
-	modules.Register("k6/x/amqp", new(AMQP))
+	oAmqp := AMQP{
+		Version:     version,
+	}
+	modules.Register("k6/x/amqp", &oAmqp)
 }
 
 // Conectar ao RabbitMQ e obter utilizando as informações e credenciais recebidas
