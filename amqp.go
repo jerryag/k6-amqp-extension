@@ -8,8 +8,6 @@ import (
 	"go.k6.io/k6/js/modules"
 )
 
-// x
-//y
 type (
 	AMQP struct{}
 )
@@ -60,10 +58,9 @@ func (a *AMQP) Publish(host, vhost, username, password, exchange, routingKey, me
 	if err != nil {
 		return err
 	}
+	defer a.Disconnect(*conn);
 
 	err = a.PublishUsingConn(*conn, exchange, routingKey, message)
-	
-	defer a.Disconnect(*conn);
 
 	return err
 }
@@ -74,10 +71,9 @@ func (a *AMQP) PublishUsingConn(conn amqp.Connection, exchange, routingKey, mess
 	if err != nil {
 		return err
 	}
+	defer a.CloseChannel(*ch)
 
 	err = a.PublishUsingChannel(*ch, exchange, routingKey, message)
-
-	defer a.CloseChannel(*ch)
 
 	return err
 }
@@ -85,7 +81,7 @@ func (a *AMQP) PublishUsingConn(conn amqp.Connection, exchange, routingKey, mess
 // Publica uma mensagem em um exchange específico do RabbitMQ usando a conexão fornecida
 func (a *AMQP) PublishUsingChannel(ch amqp.Channel, exchange, routingKey, message string) error {
 	// Publicar a mensagem no exchange com a routing key especificada
-	return ch.Publish(
+	err := ch.Publish(
 		exchange,   // Nome do exchange
 		routingKey, // Routing key
 		false,      // Mandatory (setando para false, se não houver um binding para a rk, a mensagem será descartada silenciosamente)
@@ -96,4 +92,10 @@ func (a *AMQP) PublishUsingChannel(ch amqp.Channel, exchange, routingKey, messag
 			Timestamp:   time.Now(),
 		},
 	)
+
+	if err != nil {
+		fmt.Println("Failed to publish a message:", err)
+	}
+
+	return err
 }
