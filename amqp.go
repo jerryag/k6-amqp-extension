@@ -8,8 +8,8 @@ import (
 	"go.k6.io/k6/js/modules"
 )
 
-const version = '0.0.1
-'
+const version = "0.0.1"
+
 // Estrutura principal da extensão AMQP
 type AMQP struct {
 	Version string,
