@@ -8,11 +8,12 @@ import (
 	"go.k6.io/k6/js/modules"
 )
 
+// x
+//y
 type (
 	AMQP struct{}
 )
 
-// x
 func init() {
 	modules.Register("k6/x/amqp", new(AMQP))
 }
